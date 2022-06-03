@@ -7,11 +7,11 @@
         <deviceKey>
           <Key>
             <type value="VIRTUAL_DEVICE_PATH" />
-            <value value="C:\Users\TOSHIBA\.android\avd\Wear_OS_Small_Round_API_30.avd" />
+            <value value="C:\Users\TOSHIBA\.android\avd\Wear_OS_con_oreo.avd" />
           </Key>
         </deviceKey>
       </Target>
     </targetSelectedWithDropDown>
-    <timeTargetWasSelectedWithDropDown value="2022-06-01T21:45:03.305801700Z" />
+    <timeTargetWasSelectedWithDropDown value="2022-06-02T05:03:34.028098100Z" />
   </component>
 </project>
