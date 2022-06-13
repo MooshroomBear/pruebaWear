@@ -7,6 +7,7 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -22,7 +23,7 @@ public class MainActivity extends Activity {
     private ActivityMainBinding binding;
     private Intent intent;
     private PendingIntent pendingIntent;
-
+    private Notification updateNotif;
     private NotificationCompat.Builder notification;
     private NotificationManagerCompat nm;
     private NotificationCompat.WearableExtender wearableExtender;
@@ -65,12 +66,26 @@ public class MainActivity extends Activity {
                         .extend(wearableExtender)
                         .setVibrate(new long[]{100,200,300,400,500,400})
                         .setStyle(bigTextStyle);
-                notification.setOnlyAlertOnce(true);
-                notification.setOngoing(true);
-                notification.setWhen(System.currentTimeMillis());
-                notification.setContentText(longText);
-                Notification notification1=notification.build();
-                nm.notify(idNotification,notification1);
+                //notification.setOnlyAlertOnce(true);
+                //notification.setOngoing(true);
+                //notification.setWhen(System.currentTimeMillis());
+                //notification.setContentText(longText);
+                //Notification notification1=notification.build();
+                nm.notify(idNotification,notification.build());
+
+                Handler handler=new Handler();
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        updateNotif=new NotificationCompat.Builder(MainActivity.this,idChannel)
+                                .setSmallIcon(R.mipmap.ic_launcher)
+                                .setContentTitle("Notification wear")
+                                .setContentText(longText)
+                                .setContentIntent(pendingIntent)
+                                .build();
+                        nm.notify(idNotification,updateNotif);
+                    }
+                },5000);
             }
         });
     }
